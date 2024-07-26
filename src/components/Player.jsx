@@ -15,7 +15,7 @@ function Player({ initialName, symbol, isActive }) {
     }
 
     return (
-        <li className={isActive}>
+        <li className={isActive ? 'active' : undefined}>
             <span className="player">
                 {editAbleplayerName}
                 <span className="player-symbol">{symbol}</span >
