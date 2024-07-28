@@ -44,7 +44,7 @@ function App() {
     const thirdSquareSymbol = gameBoard[combination[2].row[combination[2].column]]
 
 
-    if (firtSquareSymbol && firtSquareSymbol == secondSquareSymbol && firtSquareSymbol == thirdSquareSymbol) {
+    if (firtSquareSymbol && firtSquareSymbol === secondSquareSymbol && firtSquareSymbol === thirdSquareSymbol) {
       winner = firtSquareSymbol;
 
 
