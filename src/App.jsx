@@ -3,6 +3,16 @@ import GameBoard from "./components/GameBoard"
 import Player from "./components/Player"
 import Log from "./components/Log"
 
+
+const WINNING_COMBINATIONS = [
+  [
+    { row: 0, col: 0 },
+    { row: 0, col: 1 },
+    { row: 0, col: 2 },
+    { row: 0, col: 0 }
+  ]
+]
+
 function deriveActivePlayer(ganeTurns) {
   let currentPlayer = 'X'
   if (ganeTurns.length > 0 && ganeTurns[0].player === 'X') {
