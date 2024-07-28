@@ -2,6 +2,7 @@ import { useState } from "react"
 import GameBoard from "./components/GameBoard"
 import Player from "./components/Player"
 import Log from "./components/Log"
+import { WINNING_COMBINATIONS } from "./components/Winning_Combination.js"
 
 
 const initialGameBoard = [
@@ -11,18 +12,10 @@ const initialGameBoard = [
 
 ]
 
-const WINNING_COMBINATIONS = [
-  [
-    { row: 0, col: 0 },
-    { row: 0, col: 1 },
-    { row: 0, col: 2 },
-    { row: 0, col: 0 }
-  ]
-]
 
-function deriveActivePlayer(ganeTurns) {
+function deriveActivePlayer(gameTurns) {
   let currentPlayer = 'X'
-  if (ganeTurns.length > 0 && ganeTurns[0].player === 'X') {
+  if (gameTurns.length > 0 && gameTurns[0].player === 'X') {
     currentPlayer = 'O'
   }
   return currentPlayer;
@@ -31,14 +24,12 @@ function deriveActivePlayer(ganeTurns) {
 
 
 function App() {
-  const [ganeTurns, setGaneTurns] = useState([])
-  // const [hasWinner, setHasWinner] = useState(false)
-  // const [activePlayer, setActivePlayer] = useState('X')
+  const [gameTurns, setGameTurns] = useState([])
+  const activePlayer = deriveActivePlayer(gameTurns);
 
-  const activePlayer = deriveActivePlayer(ganeTurns);
   let gameBoard = initialGameBoard;
 
-  for (const turn of ganeTurns) {
+  for (const turn of gameTurns) {
     const { square, player } = turn;
     const { row, col } = square;
 
@@ -63,7 +54,7 @@ function App() {
 
     function handleSelectSquare(rowIndex, colIndex) {
       // setActivePlayer((curActivePlayer) => curActivePlayer === 'X' ? 'O' : 'X')
-      setGaneTurns((prevTurns) => {
+      setGameTurns((prevTurns) => {
         const currentPlayer = deriveActivePlayer(prevTurns)
         const updatedTurns = [
           { square: { row: rowIndex, col: colIndex }, player: activePlayer }, ...prevTurns
@@ -82,7 +73,7 @@ function App() {
           {winner && <p>you won, {winner}!</p>}
           <GameBoard board={gameBoard} onSelectSquare={handleSelectSquare} />
         </main>
-        <Log turns={ganeTurns} />
+        <Log turns={gameTurns} />
       </>
     )
   }
