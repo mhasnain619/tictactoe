@@ -1,6 +1,5 @@
-import React from 'react'
 
-const Log = ({ turns, }) => {
+const Log = ({ turns }) => {
     return (
         <ol id='log'>
             {turns.map((turn) => <li
